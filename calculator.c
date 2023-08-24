@@ -173,6 +173,10 @@ uint8 isInputValid(uint8* operation, uint8 len)
                 operation_valid = 0;
                 break;
             }
+            else if('-' == last_char && '-' == operation[op_index] && operation[op_index+1]){
+                operation_valid = 0;
+                break;
+            }
             last_char = operation[op_index];
         }
     }
@@ -182,7 +186,7 @@ uint8 isInputValid(uint8* operation, uint8 len)
 
 uint8 get_operation_after_mult_div(uint8* operation, uint8 len)
 {
-    uint8 result[9] = {0};
+    uint8 result[20] = {0};
     uint8 result_index = 0;
     uint8 num1_text[8] = {[0] = operation[0],[1 ... 7] = '\0'}, num2_text[8] = {0};
     uint8 num1_index = 1, num2_index = 0;
@@ -261,7 +265,7 @@ void get_two_operands_result(uint8* num1_text, uint8* num2_text, uint8 op, uint8
     }
     
     memset(num1_text, '\0', 8);
-    sprintf(num1_text, "%lu", result);
+    sprintf(num1_text, "%ld", result);
 
     *num1_len = strlen(num1_text);
 }
