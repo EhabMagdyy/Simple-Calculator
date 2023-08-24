@@ -14,14 +14,8 @@ static const uint8 keypad_matrix[KEYPAD_ROWS][KEYPAD_COLOUMNS] = {
                                                         {'c','0','=','+'}
 };
 
-/**
- * 
- * @param keypad
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
-Std_ReturnType keypad_intialize(const keypad_t *keypad){
+Std_ReturnType keypad_intialize(const keypad_t *keypad)
+{
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != keypad){
         ret = E_OK;
@@ -35,28 +29,27 @@ Std_ReturnType keypad_intialize(const keypad_t *keypad){
     return ret;
 }
 
-/**
- * 
- * @param keypad
- * @param value
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
-Std_ReturnType keypad_get_value(const keypad_t *keypad, uint8 *value){
+Std_ReturnType keypad_get_value(const keypad_t *keypad, uint8 *value)
+{
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != keypad && NULL != value){
         ret = E_OK;
-        logic_t logic;
+        logic_t logic = 0;
+        uint8 keypad_pressed = 0;
         for(uint8 rows = 0 ; rows < KEYPAD_ROWS ; rows++){
             ret = gpio_pin_write_logic(&(keypad->keypad_rows_pins[rows]), GPIO_HIGH);
             for(uint8 col = 0 ; col < KEYPAD_COLOUMNS ; col++){
                 ret = gpio_pin_read_logic(&(keypad->keypad_coloumns_pins[col]), &logic);
                 if(GPIO_HIGH == logic){
                     *value = keypad_matrix[rows][col];
+                    keypad_pressed = 1;
+                    break;
                 }
             }
             ret = gpio_pin_write_logic(&(keypad->keypad_rows_pins[rows]), GPIO_LOW);
+            if(keypad_pressed){
+                break;
+            }
         }
     }
     return ret;

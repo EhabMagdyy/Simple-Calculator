@@ -10,13 +10,6 @@
 static Std_ReturnType send_8bit_enable_signal(const lcd_8bit_t *lcd);
 static Std_ReturnType lcd_8bit_set_cursor(const lcd_8bit_t *lcd, uint8 row, uint8 colomn);
 
-/**
- * 
- * @param lcd
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType lcd_8bit_intialize(const lcd_8bit_t *lcd){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd){
@@ -44,14 +37,6 @@ Std_ReturnType lcd_8bit_intialize(const lcd_8bit_t *lcd){
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @param command
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType lcd_8bit_send_command(const lcd_8bit_t *lcd, uint8 command){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd){
@@ -65,14 +50,6 @@ Std_ReturnType lcd_8bit_send_command(const lcd_8bit_t *lcd, uint8 command){
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @param data
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType lcd_8bit_send_char(const lcd_8bit_t *lcd, uint8 data){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd){
@@ -86,16 +63,6 @@ Std_ReturnType lcd_8bit_send_char(const lcd_8bit_t *lcd, uint8 data){
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @param row
- * @param colomn
- * @param data
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType lcd_8bit_send_char_pos(const lcd_8bit_t *lcd, uint8 row, uint8 colomn, uint8 data){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd){
@@ -106,14 +73,6 @@ Std_ReturnType lcd_8bit_send_char_pos(const lcd_8bit_t *lcd, uint8 row, uint8 co
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @param string
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType lcd_8bit_send_string(const lcd_8bit_t *lcd, uint8 *string){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd && NULL != string){
@@ -125,16 +84,6 @@ Std_ReturnType lcd_8bit_send_string(const lcd_8bit_t *lcd, uint8 *string){
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @param row
- * @param colomn
- * @param string
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType lcd_8bit_send_string_pos(const lcd_8bit_t *lcd, uint8 row, uint8 colomn, uint8 *string){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd){
@@ -145,13 +94,6 @@ Std_ReturnType lcd_8bit_send_string_pos(const lcd_8bit_t *lcd, uint8 row, uint8 
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 static Std_ReturnType send_8bit_enable_signal(const lcd_8bit_t *lcd){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd){
@@ -163,15 +105,6 @@ static Std_ReturnType send_8bit_enable_signal(const lcd_8bit_t *lcd){
     return ret;
 }
 
-/**
- * 
- * @param lcd
- * @param row
- * @param colomn
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 static Std_ReturnType lcd_8bit_set_cursor(const lcd_8bit_t *lcd, uint8 row, uint8 colomn){
     Std_ReturnType ret = E_NOT_OK;
     if(NULL != lcd && row <= NUMBER_OF_ROWS && colomn <= NUMBER_OF_COLOMNS){
@@ -184,22 +117,3 @@ static Std_ReturnType lcd_8bit_set_cursor(const lcd_8bit_t *lcd, uint8 row, uint
     }
     return ret; 
 }
-
-/**
- * 
- * @param value
- * @param str
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
-Std_ReturnType lcd_convert_int_to_string(sint32 value, uint8 *str){
-    Std_ReturnType ret = E_NOT_OK;
-    if(NULL != str){
-        ret = E_OK;
-        memset(str, '\0', 11);
-        sprintf(str, "%ld", value);
-    }
-    return ret;
-}
-

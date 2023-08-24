@@ -11,13 +11,6 @@ volatile uint8* tris_registers[] = {&TRISA, &TRISB, &TRISC, &TRISD, &TRISE};
 volatile uint8* port_registers[] = {&PORTA, &PORTB, &PORTC, &PORTD, &PORTE};
 volatile uint8* lat_registers[] = {&LATA, &LATB, &LATC, &LATD, &LATE};
 
-/**
- * 
- * @param _pin_config pointer to the configuration @ref pin_config_t
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType gpio_pin_direction_intialize(const pin_config_t *_pin_config){
     Std_ReturnType ret = E_OK;
     if(_pin_config == NULL || _pin_config->pin > PORT_PIN_MAX_NUMBER-1){
@@ -37,14 +30,6 @@ Std_ReturnType gpio_pin_direction_intialize(const pin_config_t *_pin_config){
     return ret;
 }
 
-/**
- * 
- * @param _pin_config pointer to the configuration @ref pin_config_t
- * @param logic
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType gpio_pin_write_logic(const pin_config_t *_pin_config, logic_t logic){
     Std_ReturnType ret = E_OK;
     if(_pin_config == NULL || _pin_config->pin > PORT_PIN_MAX_NUMBER-1){
@@ -64,14 +49,6 @@ Std_ReturnType gpio_pin_write_logic(const pin_config_t *_pin_config, logic_t log
     return ret;
 }
 
-/**
- * 
- * @param _pin_config pointer to the configuration @ref pin_config_t
- * @param logic
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType gpio_pin_read_logic(const pin_config_t *_pin_config, logic_t *logic){
     Std_ReturnType ret = E_OK;
     if(_pin_config == NULL || logic == NULL || _pin_config->pin > PORT_PIN_MAX_NUMBER-1){
@@ -83,13 +60,6 @@ Std_ReturnType gpio_pin_read_logic(const pin_config_t *_pin_config, logic_t *log
     return ret;    
 }
 
-/**
- * 
- * @param _pin_config pointer to the configuration @ref pin_config_t  
- * @return status of the function
- *         (E_OK): The function done successfully
- *         (E_NOT_OK): The function has issue to perform this action
- */
 Std_ReturnType gpio_pin_intialize(const pin_config_t *_pin_config){
     Std_ReturnType ret = E_OK;
     if(_pin_config == NULL || _pin_config->pin > PORT_PIN_MAX_NUMBER-1){
